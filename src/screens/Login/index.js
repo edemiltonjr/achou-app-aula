@@ -1,26 +1,61 @@
-import { Text, TouchableOpacity, View } from 'react-native'
+import { TextInput, Text, TouchableOpacity, View, Image } from 'react-native'
+import React, { useState } from 'react';
+import styles from './style';
 
 export default function Login({navigation}){
-    return(
-        <View>
-            <Text>Login</Text>
-            {/* Inputs usuário e senha */}
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorLogin, setErroLogin] = useState(null);
+
+    const validate = () => {
+
+    }
+
+    return (
+        <View style={styles.login}>
+
+            <Image style={styles.logo} source={require('../../../assets/logo_achou_white.png')} />
+
+            {errorLogin != null &&
+                <Text style={styles.alert}>{errorLogin}</Text>
+            }
+
+            <TextInput
+                style={styles.formInput}
+                placeholder='E-mail'
+                value={email}
+                onChangeText={setEmail}
+            />
+            <TextInput
+                style={styles.formInput}
+                secureTextEntry={true}
+                placeholder='Senha'
+                value={password}
+                onChangeText={setPassword}
+            />
+
             <TouchableOpacity
-                onPress={() => navigation.navigate('CreateUser')}
+                style={styles.formButton}
+                onPress={validate}
             >
-                <Text>Cadastrar usuário</Text>
+                <Text style={styles.textButton}>Entrar</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={() => navigation.navigate('CreateProfessional')}
-            >
-                <Text>Cadastrar profissional</Text>
+                style={styles.btnCreate}
+                onPress={() => navigation.navigate('CreateUser')}>
+                <Text style={styles.btnCreateText}>Criar Usuário</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={() => navigation.navigate('Tabs')}
-            >
-                <Text>Navegação</Text>
+                style={styles.btnCreate}
+                onPress={() => navigation.navigate('CreateProfessional')}>
+                <Text style={styles.btnCreateText}>Criar Profissional</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Tabs')}>
+                <Text style={styles.btnCreateText}>Navegação</Text>
             </TouchableOpacity>
         </View>
     );

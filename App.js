@@ -23,10 +23,10 @@ export default function App() {
                     headerTitleAlign: 'center' // Alinhamento do texto
                 }}
             >
-                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="CreateUser" component={CreateUser} options={{ title: 'Cadastro de Usuário' }} />
                 <Stack.Screen name="CreateProfessional" component={CreateProfessional} options={{ title: 'Cadastro de Profissional' }} />
-                <Stack.Screen name="Tabs" component={Tabs} />
+                <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
