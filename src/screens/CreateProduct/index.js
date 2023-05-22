@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 
-export default function CreateProfessional(){
+export default function CreateProduct(){
     return(
         <View>
             <Text>Cadastro de profissional</Text>

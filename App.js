@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Login from './src/screens/Login/';
 import CreateUser from './src/screens/CreateUser/';
-import CreateProfessional from './src/screens/CreateProfessional/';
+import CreateProduct from './src/screens/CreateProduct/';
 import Home from './src/screens/Home/';
 import Favorites from './src/screens/Favorites/';
 import Account from './src/screens/Account/';
@@ -25,7 +25,7 @@ export default function App() {
             >
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="CreateUser" component={CreateUser} options={{ title: 'Cadastro de Usuário' }} />
-                <Stack.Screen name="CreateProfessional" component={CreateProfessional} options={{ title: 'Cadastro de Profissional' }} />
+                <Stack.Screen name="CreateProduct" component={CreateProduct} options={{ title: 'Cadastro de produto' }} />
                 <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
