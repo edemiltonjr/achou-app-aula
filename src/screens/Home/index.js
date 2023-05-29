@@ -9,6 +9,10 @@ import { MaterialIcons } from '@expo/vector-icons'
 export default function Home({ navigation }) {
     const [product, setProduct] = useState([])
 
+    const deleteProduct = (id) => {
+        deleteDoc(doc(db, "products", id))
+    }
+
     useEffect(() => {
         const q = query(collection(db, "products"), orderBy("data_registro","desc"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -27,11 +31,16 @@ export default function Home({ navigation }) {
                 showsVerticalScrollIndicator={false}
                 data={product}
                 renderItem={({item}) =>
-                    <View>
+                    <View style={styles.produto}>
                         <View>
-                            <Text>{item.descricao}</Text>
-                            <Text>R$ {item.valor}</Text>
+                            <Text style={styles.descricao}>{item.descricao}</Text>
+                            <Text style={styles.valor}>R$ {item.valor}</Text>
                         </View>
+                        <TouchableOpacity
+                            onPress={() => deleteProduct(item.id)}
+                        >
+                            <MaterialIcons name="delete" size={26} color="#F60" />
+                        </TouchableOpacity>
                     </View>
                 }
             />
