@@ -1,8 +1,8 @@
 import { TextInput, Text, TouchableOpacity, View, Image } from 'react-native'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './style';
 import firebase from '../../config/firebase'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState("");
@@ -18,8 +18,18 @@ export default function Login({ navigation }) {
         }
     }
 
+    const auth = getAuth();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if(user) {
+                const uid = user.uid
+                navigation.navigate('Tabs')
+            }
+        })
+    }, [])
+
     const loginFirebase = () => {
-        const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
